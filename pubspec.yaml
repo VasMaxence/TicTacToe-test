@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  flutter_riverpod:
 
 dev_dependencies:
   flutter_test:
@@ -18,9 +19,34 @@ dev_dependencies:
 
   flutter_lints: ^5.0.0
   flutter_flavorizr: ^2.4.1
+  flutter_native_splash:
+  flutter_launcher_icons:
 
 flutter:
   uses-material-design: true
+
+flutter_native_splash:
+  background_image: "assets/image/splash.png"
+  web: false
+  ios: true
+  android: false
+  color: "#8338E3"
+  image: "assets/image/android_splash_icon.png"
+  image_dark: "assets/image/android_splash_icon.png"
+  android_12:
+    image: "assets/image/android_splash_icon.png"
+    color: "#8338E3"
+    icon_background_color: "#8338E3"
+    image_dark: "assets/image/android_splash_icon.png"
+    icon_background_color_dark: "#8338E3"
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  # android: true
+  remove_alpha_ios: true
+  image_path: "assets/image/appIcon.png"
+  min_sdk_android: 28
 
 flavorizr:
   app:

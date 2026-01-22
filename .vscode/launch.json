@@ -1,25 +1,57 @@
 {
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "TicTacToe-test",
-      "request": "launch",
-      "type": "dart"
-    },
-    {
-      "name": "TicTacToe-test (profile mode)",
+      "name": "TicTacToe (dev)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "profile"
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=FLAVOR=dev"
+      ]
     },
     {
-      "name": "TicTacToe-test (release mode)",
+      "name": "TicTacToe (staging)",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
+      "args": [
+        "--flavor",
+        "staging",
+        "--dart-define=FLAVOR=staging"
+      ]
+    },
+    {
+      "name": "TicTacToe (prod)",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--flavor",
+        "prod",
+        "--dart-define=FLAVOR=prod"
+      ]
+    },
+    {
+      "name": "TicTacToe (dev • profile)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "profile",
+      "args": [
+        "--flavor",
+        "dev",
+        "--dart-define=FLAVOR=dev"
+      ]
+    },
+    {
+      "name": "TicTacToe (prod • release)",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "release",
+      "args": [
+        "--flavor",
+        "prod",
+        "--dart-define=FLAVOR=prod"
+      ]
     }
   ]
 }

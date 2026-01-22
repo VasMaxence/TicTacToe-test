@@ -24,3 +24,7 @@ flutter run --flavor prod --dart-define=FLAVOR=prod
 
 _Le choix de flutter_flavorizr au lieu de flavors natifs => Pas gros projet, petit et rapide. Donc plus intéressant._
 _Dans le cas d'un gros projet, il est plus intéressant d'utiliser les flavors natifs afin d'avoir plus de flexibilité._
+
+## State Management :
+
+Gestion des states via le package RiverPod 2
