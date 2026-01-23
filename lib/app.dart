@@ -1,21 +1,24 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:tictactoe_test/core/env/env_config.dart';
+import 'package:tictactoe_test/core/router/app_router.dart';
 
 import 'flavors.dart';
-import 'pages/my_home_page.dart';
 
 class App extends StatelessWidget {
   final EnvironmentConfig config;
 
-  const App({super.key, required this.config});
+  final _appRouter = AppRouter();
+
+  App({super.key, required this.config});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: F.title,
       theme: ThemeData(primarySwatch: Colors.blue),
-      home: _flavorBanner(child: MyHomePage(), show: kDebugMode),
+      routerConfig: _appRouter.config(),
+      builder: (context, child) => _flavorBanner(child: child ?? const SizedBox(), show: kDebugMode),
     );
   }
 

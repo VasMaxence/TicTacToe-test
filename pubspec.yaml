@@ -12,6 +12,7 @@ dependencies:
 
   cupertino_icons: ^1.0.8
   flutter_riverpod:
+  auto_route: 
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +22,8 @@ dev_dependencies:
   flutter_flavorizr: ^2.4.1
   flutter_native_splash:
   flutter_launcher_icons:
+  auto_route_generator:
+  lean_builder:
 
 flutter:
   uses-material-design: true
