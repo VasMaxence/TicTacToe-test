@@ -8,7 +8,7 @@ import 'flavors.dart';
 class App extends StatelessWidget {
   final EnvironmentConfig config;
 
-  final _appRouter = AppRouter();
+  final AppRouter _appRouter = AppRouter();
 
   App({super.key, required this.config});
 
