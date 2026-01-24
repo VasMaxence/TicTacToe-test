@@ -12,7 +12,7 @@ class PlayerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = {Player.x: Color(0xFFFF0004), Player.o: Color(0xFF1298F8)}[player]!;
+    final Color color = {Player.x: Color(0xFFFF0004), Player.o: Color(0xFF1298F8), Player.i: Color(0xFFF8B312)}[player]!;
 
     return Stack(
       children: [
