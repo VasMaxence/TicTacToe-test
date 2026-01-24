@@ -30,7 +30,7 @@ class Board {
 
     final updated = List<Player?>.from(cells);
     updated[index] = player;
-    return Board(updated);
+    return Board(updated, size: size);
   }
 
   bool get isFull => cells.every((c) => c != null);

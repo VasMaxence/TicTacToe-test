@@ -13,6 +13,8 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_riverpod:
   auto_route: 
+  flutter_screenutil:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
@@ -23,10 +25,21 @@ dev_dependencies:
   flutter_native_splash:
   flutter_launcher_icons:
   auto_route_generator:
-  lean_builder:
+  build_runner:
 
 flutter:
   uses-material-design: true
+
+  fonts:
+    - family: "Joyful"
+      fonts:
+        - asset: assets/fonts/Super-Joyful.ttf
+          weight: 400
+
+  assets:
+    - assets/image/
+    - assets/icons/
+    - assets/fonts/
 
 flutter_native_splash:
   background_image: "assets/image/splash.png"

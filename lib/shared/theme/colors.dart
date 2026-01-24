@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart' show Color, LinearGradient;
+import 'package:flutter/material.dart' show Color, LinearGradient, Alignment;
 
 abstract class AppColors {
   static const Color primary = Color(0xFF8338E3);
@@ -9,11 +9,11 @@ abstract class AppColors {
 
   static const Color orange = Color(0xFFFF930F);
 
-  static const Color yellow = Color(0xFFFFF95B);
+  static const Color yellow = Color(0xFFFFCC39);
 }
 
 abstract class AppGradient {
-  static const LinearGradient primary = LinearGradient(colors: [AppColors.primary, AppColors.secondary]);
+  static const LinearGradient primary = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColors.primary, AppColors.secondary]);
 
-  static const LinearGradient textGradient = LinearGradient(colors: [AppColors.orange, AppColors.yellow]);
+  static const LinearGradient yellowGradient = LinearGradient(colors: [AppColors.orange, AppColors.yellow]);
 }

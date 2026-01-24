@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tictactoe_test/core/env/env_config.dart';
 import 'package:tictactoe_test/core/router/app_router.dart';
 
@@ -14,11 +15,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: F.title,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      routerConfig: _appRouter.config(),
-      builder: (context, child) => _flavorBanner(child: child ?? const SizedBox(), show: kDebugMode),
+    return ScreenUtilInit(
+      minTextAdapt: true,
+      splitScreenMode: true,
+      designSize: const Size(393, 852),
+      builder: (context, child) => MaterialApp.router(
+        title: F.title,
+        theme: ThemeData(primarySwatch: Colors.blue),
+        routerConfig: _appRouter.config(),
+        builder: (context, child) => _flavorBanner(child: child ?? const SizedBox(), show: kDebugMode),
+      ),
     );
   }
 

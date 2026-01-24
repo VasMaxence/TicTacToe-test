@@ -17,6 +17,5 @@ final playMoveProvider = Provider<PlayMove>((ref) {
 final gameControllerProvider = StateNotifierProvider<GameController, GameState>((ref) {
   final playMove = ref.watch(playMoveProvider);
 
-  // valeur par défaut, overridable
   return GameController(playMove: playMove, difficulty: Difficulty.easy);
 });
