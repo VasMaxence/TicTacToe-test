@@ -41,7 +41,11 @@ class GameBoard extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final value = state.board.cells[index];
 
-                    return CellWidget(value: value, onTap: state.isGameOver || value != null ? null : () => _onTap(context, index));
+                    return CellWidget(
+                      value: value,
+                      onTap: state.isGameOver || value != null ? null : () => _onTap(context, index),
+                      isWinningCell: state.winningLine?.indexes.contains(index) ?? false,
+                    );
                   },
                 ),
               ),

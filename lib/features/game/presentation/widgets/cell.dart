@@ -1,19 +1,74 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_text.dart';
+import 'package:tictactoe_test/shared/theme/colors.dart';
 
-class CellWidget extends StatelessWidget {
+class CellWidget extends StatefulWidget {
   final Player? value;
   final VoidCallback? onTap;
+  final bool isWinningCell;
 
-  const CellWidget({super.key, required this.value, required this.onTap});
+  const CellWidget({super.key, required this.value, required this.onTap, required this.isWinningCell});
+
+  @override
+  State<CellWidget> createState() => _CellWidgetState();
+}
+
+class _CellWidgetState extends State<CellWidget> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _scale;
+  late final Animation<double> _opacity;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(vsync: this, duration: const Duration(milliseconds: 180));
+
+    _scale = CurvedAnimation(parent: _controller, curve: Curves.easeOutBack);
+
+    _opacity = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOut));
+
+    if (widget.value != null) {
+      _controller.forward();
+    }
+  }
+
+  @override
+  void didUpdateWidget(CellWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Déclenche l’animation UNIQUEMENT à l’apparition
+    if (oldWidget.value == null && widget.value != null) {
+      _controller.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    final bgColor = widget.isWinningCell ? AppColors.winner.withValues(alpha: .25) : Colors.transparent;
+
     return InkWell(
-      onTap: onTap,
+      onTap: widget.onTap,
       child: Container(
-        child: value != null ? Center(child: PlayerText(player: value!, fontSize: 80, height: .8)) : const SizedBox(),
+        decoration: BoxDecoration(color: bgColor),
+        child: widget.value == null
+            ? const SizedBox()
+            : Center(
+                child: FadeTransition(
+                  opacity: _opacity,
+                  child: ScaleTransition(
+                    scale: _scale,
+                    child: PlayerText(player: widget.value!, fontSize: 80, height: .8),
+                  ),
+                ),
+              ),
       ),
     );
   }

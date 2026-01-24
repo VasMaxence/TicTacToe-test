@@ -1,7 +1,9 @@
+import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
+
 import '../entities/player.dart';
 
 class CheckWinner {
-  Player? call({required List<Player?> cells, required int boardSize, int winLength = 3}) {
+  WinningLine? call({required List<Player?> cells, required int boardSize, int winLength = 3}) {
     for (int row = 0; row < boardSize; row++) {
       for (int col = 0; col <= boardSize - winLength; col++) {
         final winner = _checkLine(cells, boardSize, row, col, 0, 1, winLength);
@@ -33,18 +35,24 @@ class CheckWinner {
     return null;
   }
 
-  Player? _checkLine(List<Player?> cells, int size, int startRow, int startCol, int rowStep, int colStep, int length) {
+  WinningLine? _checkLine(List<Player?> cells, int size, int startRow, int startCol, int rowStep, int colStep, int length) {
     final first = cells[startRow * size + startCol];
-    if (first == null) return null;
+
+    if (first == null || first == Player.i) return null;
+
+    final indexes = <int>[startRow * size + startCol];
 
     for (int i = 1; i < length; i++) {
       final row = startRow + rowStep * i;
       final col = startCol + colStep * i;
-      if (cells[row * size + col] != first) {
+      final index = row * size + col;
+
+      if (cells[index] != first) {
         return null;
       }
+      indexes.add(index);
     }
 
-    return first;
+    return WinningLine(indexes, first);
   }
 }

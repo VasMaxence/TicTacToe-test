@@ -28,7 +28,7 @@ void main() {
 
     expect(state.board.cells.every((c) => c == null), isTrue);
     expect(state.currentPlayer, Player.x);
-    expect(state.winner, isNull);
+    expect(state.winningLine, isNull);
     expect(state.isDraw, isFalse);
   });
 
@@ -53,6 +53,6 @@ void main() {
 
     expect(state.board.cells.every((c) => c == null), isTrue);
     expect(state.currentPlayer, Player.x);
-    expect(state.winner, isNull);
+    expect(state.winningLine, isNull);
   });
 }

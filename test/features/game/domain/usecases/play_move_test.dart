@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
 import 'package:tictactoe_test/features/game/domain/usecases/play_move.dart';
 import 'package:tictactoe_test/features/game/domain/usecases/check_winner.dart';
 import 'package:tictactoe_test/features/game/domain/entities/game_state.dart';
@@ -20,12 +21,17 @@ void main() {
 
     expect(next.board[0], Player.x);
     expect(next.currentPlayer, Player.o);
-    expect(next.winner, isNull);
+    expect(next.winningLine, isNull);
     expect(next.isDraw, isFalse);
   });
 
   test('returns same state if game is already over', () {
-    final state = GameState(board: Board.fromDifficulty(Difficulty.easy), currentPlayer: Player.x, difficulty: Difficulty.easy, winner: Player.x);
+    final state = GameState(
+      board: Board.fromDifficulty(Difficulty.easy),
+      currentPlayer: Player.x,
+      difficulty: Difficulty.easy,
+      winningLine: WinningLine([0, 1, 2], Player.x),
+    );
 
     final next = playMove(state, 1);
 
@@ -39,7 +45,7 @@ void main() {
 
     final next = playMove(state, 2);
 
-    expect(next.winner, Player.x);
+    expect(next.winningLine, WinningLine([0, 1, 2], Player.x));
     expect(next.currentPlayer, Player.x);
     expect(next.isGameOver, isTrue);
   });
@@ -52,7 +58,7 @@ void main() {
     final next = playMove(state, 8);
 
     expect(next.isDraw, isTrue);
-    expect(next.winner, isNull);
+    expect(next.winningLine, isNull);
     expect(next.isGameOver, isTrue);
   });
 
@@ -64,7 +70,7 @@ void main() {
 
     expect(tmp.board[0], Player.x);
     expect(tmp.currentPlayer, Player.o);
-    expect(tmp.winner, isNull);
+    expect(tmp.winningLine, isNull);
     expect(tmp.isDraw, isFalse);
   });
 }

@@ -5,7 +5,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_controller.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_providers.dart';
+import 'package:tictactoe_test/features/game/presentation/widgets/end_game_announcer.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/game_board.dart';
+import 'package:tictactoe_test/features/game/presentation/widgets/new_game_button.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_turn.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
@@ -37,10 +39,6 @@ class _GameView extends ConsumerWidget {
     final state = ref.watch(gameControllerProvider);
 
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Game'),
-      //   actions: [IconButton(icon: const Icon(Icons.refresh), onPressed: () => ref.read(gameControllerProvider.notifier).reset())],
-      // ),
       body: DecoratedBox(
         decoration: BoxDecoration(gradient: AppGradient.primary),
         child: SafeArea(
@@ -49,45 +47,49 @@ class _GameView extends ConsumerWidget {
             child: Column(
               children: [
                 sh(12),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        ref.read(gameControllerProvider.notifier).reset();
-                        context.router.pop();
-                      },
-                      child: Padding(
-                        padding: pwh(14, 8),
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_back.svg',
-                          colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
-                          width: formatWidth(24),
+                Expanded(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          ref.read(gameControllerProvider.notifier).reset();
+                          context.router.pop();
+                        },
+                        child: Padding(
+                          padding: pwh(14, 8),
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_back.svg',
+                            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                            width: formatWidth(24),
+                          ),
                         ),
                       ),
-                    ),
-                    const Expanded(child: PlayerTurn()),
-                    InkWell(
-                      onTap: () {
-                        ref.read(gameControllerProvider.notifier).reset();
-                      },
-                      child: Padding(
-                        padding: pwh(14, 8),
-                        child: SvgPicture.asset(
-                          'assets/icons/ic_refresh.svg',
-                          colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
-                          width: formatWidth(24),
+                      Expanded(child: state.isGameOver ? const EndGameAnnouncer() : const PlayerTurn()),
+                      InkWell(
+                        onTap: () {
+                          ref.read(gameControllerProvider.notifier).reset();
+                        },
+                        child: Padding(
+                          padding: pwh(14, 8),
+                          child: SvgPicture.asset(
+                            'assets/icons/ic_refresh.svg',
+                            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                            width: formatWidth(24),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 sh(12),
                 Expanded(
                   flex: 2,
                   child: Center(child: GameBoard(state: state)),
                 ),
-                const Spacer(),
+                Expanded(
+                  child: state.isGameOver ? const Align(alignment: Alignment.bottomCenter, child: NewGameButton()) : const SizedBox(),
+                ),
               ],
             ),
           ),

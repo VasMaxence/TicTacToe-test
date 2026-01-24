@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
 import 'package:tictactoe_test/features/game/domain/usecases/check_winner.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 
@@ -16,7 +17,7 @@ void main() {
 
       final winner = checkWinner(cells: cells, boardSize: 3, winLength: 3);
 
-      expect(winner, Player.x);
+      expect(winner, WinningLine([0, 1, 2], Player.x));
     });
 
     test('4*4 - horizontal win - middle', () {
@@ -30,7 +31,7 @@ void main() {
 
       final winner = checkWinner(cells: cells, boardSize: 4, winLength: 3);
 
-      expect(winner, Player.o);
+      expect(winner, WinningLine([4, 5, 6], Player.o));
     });
 
     test('4*4 - vertical win', () {
@@ -44,7 +45,7 @@ void main() {
 
       final winner = checkWinner(cells: cells, boardSize: 4, winLength: 3);
 
-      expect(winner, Player.x);
+      expect(winner, WinningLine([1, 5, 9], Player.x));
     });
 
     test('5*5 - diagonal win', () {
@@ -85,7 +86,7 @@ void main() {
 
       final winner = checkWinner(cells: cells, boardSize: 5, winLength: 3);
 
-      expect(winner, Player.o);
+      expect(winner, WinningLine([0, 6, 12], Player.o));
     });
 
     test('5x5 - diagonal win 2', () {
@@ -126,7 +127,7 @@ void main() {
 
       final winner = checkWinner(cells: cells, boardSize: 5, winLength: 3);
 
-      expect(winner, Player.x);
+      expect(winner, WinningLine([2, 6, 10], Player.x));
     });
 
     test('no win when only two aligned', () {
@@ -162,6 +163,20 @@ void main() {
        * x o x
        */
       final cells = [Player.o, Player.x, Player.o, Player.x, Player.o, Player.x, Player.x, Player.o, Player.x];
+
+      final winner = checkWinner(cells: cells, boardSize: 3, winLength: 3);
+
+      expect(winner, isNull);
+    });
+
+    test('blocked cells cannot win even if aligned', () {
+      /** For Preview :
+       * i i i .
+       * . . . .
+       * . . . .
+       * . . . .
+       */
+      final cells = [Player.i, Player.i, Player.i, null, null, null, null, null, null, null, null, null, null, null, null, null];
 
       final winner = checkWinner(cells: cells, boardSize: 3, winLength: 3);
 

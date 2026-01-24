@@ -10,6 +10,10 @@ abstract class AppColors {
   static const Color orange = Color(0xFFFF930F);
 
   static const Color yellow = Color(0xFFFFCC39);
+
+  static const Color winner = Color(0xFF9FF15C);
+
+  static const Color blue = Color(0xFF3341FF);
 }
 
 abstract class AppGradient {
