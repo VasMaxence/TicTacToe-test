@@ -8,12 +8,12 @@ import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 void main() {
   late ProviderContainer container;
 
-  setUp(() {
+  setUp(() async {
     container = ProviderContainer(
       overrides: [
         gameControllerProvider.overrideWith((ref) {
           final playMove = ref.watch(playMoveProvider);
-          return GameController(playMove: playMove, difficulty: Difficulty.easy);
+          return GameController(playMove: playMove, saveScoreUseCase: null, difficulty: Difficulty.easy);
         }),
       ],
     );

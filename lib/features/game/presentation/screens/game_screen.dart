@@ -9,6 +9,7 @@ import 'package:tictactoe_test/features/game/presentation/widgets/end_game_annou
 import 'package:tictactoe_test/features/game/presentation/widgets/game_board.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/new_game_button.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_turn.dart';
+import 'package:tictactoe_test/features/score_history/domain/providers/score_usecases_providers.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
@@ -24,7 +25,8 @@ class GameScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final controllerProvider = gameControllerProvider.overrideWith((ref) {
       final playMove = ref.watch(playMoveProvider);
-      return GameController(playMove: playMove, difficulty: difficulty);
+      final saveScore = ref.watch(saveScoreProvider);
+      return GameController(playMove: playMove, saveScoreUseCase: saveScore, difficulty: difficulty);
     });
 
     return ProviderScope(overrides: [controllerProvider], child: const _GameView());

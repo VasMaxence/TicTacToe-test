@@ -18,4 +18,14 @@ class GameState {
   }
 
   bool get isGameOver => winningLine != null || isDraw;
+
+  GameState copyWith({Board? board, Player? currentPlayer, bool? isDraw, Difficulty? difficulty, WinningLine? winningLine, bool clearWinningLine = false}) {
+    return GameState(
+      board: board ?? this.board,
+      currentPlayer: currentPlayer ?? this.currentPlayer,
+      isDraw: isDraw ?? this.isDraw,
+      difficulty: difficulty ?? this.difficulty,
+      winningLine: clearWinningLine ? null : (winningLine ?? this.winningLine),
+    );
+  }
 }
