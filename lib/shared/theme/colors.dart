@@ -14,10 +14,18 @@ abstract class AppColors {
   static const Color winner = Color(0xFF9FF15C);
 
   static const Color blue = Color(0xFF3341FF);
+
+  static const Color playerX = Color(0xFFFF0004);
+  static const Color playerO = Color(0xFF1298F8);
+  static const Color playerBlocked = Color(0xFFF8B312);
 }
 
 abstract class AppGradient {
-  static const LinearGradient primary = LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [AppColors.primary, AppColors.secondary]);
+  static const LinearGradient primary = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [AppColors.primary, AppColors.secondary],
+  );
 
   static const LinearGradient yellowGradient = LinearGradient(colors: [AppColors.orange, AppColors.yellow]);
 }

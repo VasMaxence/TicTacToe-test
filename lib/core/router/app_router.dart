@@ -4,5 +4,9 @@ import 'package:tictactoe_test/core/router/app_router.gr.dart';
 @AutoRouterConfig()
 class AppRouter extends RootStackRouter {
   @override
-  List<AutoRoute> get routes => [AutoRoute(page: HomeRoute.page, initial: true), AutoRoute(page: GameRoute.page)];
+  List<AutoRoute> get routes => [
+    AutoRoute(page: HomeRoute.page, initial: true),
+    AutoRoute(page: GameRoute.page),
+    AutoRoute(page: ScoreHistoryRoute.page),
+  ];
 }

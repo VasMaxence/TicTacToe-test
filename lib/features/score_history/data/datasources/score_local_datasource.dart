@@ -18,6 +18,8 @@ class ScoreLocalDatasourceImpl implements ScoreLocalDatasource {
 
   @override
   Future<List<ScoreModel>> getAll() async {
-    return box?.values.toList() ?? [];
+    final items = box?.values.toList() ?? [];
+
+    return items..sort((a, b) => b.playedAt.compareTo(a.playedAt));
   }
 }

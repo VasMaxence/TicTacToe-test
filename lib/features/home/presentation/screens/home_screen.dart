@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 import 'package:tictactoe_test/features/home/presentation/widgets/difficulty_button.dart';
 import 'package:tictactoe_test/features/home/presentation/widgets/play_button.dart';
+import 'package:tictactoe_test/features/home/presentation/widgets/show_history_button.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
@@ -36,12 +37,14 @@ class HomeScreen extends ConsumerWidget {
                       children: [
                         for (final difficulty in Difficulty.values) ...[DifficultyButton(difficulty: difficulty), sh(6)],
                         sh(6),
-                        PlayButton(),
+                        const PlayButton(),
                       ],
                     ),
                   ),
                 ),
-                const Spacer(),
+                const Expanded(
+                  child: Align(alignment: Alignment.bottomCenter, child: ShowHistoryButton()),
+                ),
               ],
             ),
           ),
@@ -50,29 +53,3 @@ class HomeScreen extends ConsumerWidget {
     );
   }
 }
-
-/**
- * Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Text('Choose difficulty', style: TextStyle(fontSize: 20)),
-            const SizedBox(height: 24),
-            for (final difficulty in Difficulty.values)
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: ElevatedButton(
-                  onPressed: () {
-                    ref.invalidate(gameControllerProvider);
-
-                    context.router.navigate(GameRoute(difficulty: difficulty));
-                  },
-                  child: Text(difficulty.name.toUpperCase()),
-                ),
-              ),
-          ],
-        ),
-      )
- */

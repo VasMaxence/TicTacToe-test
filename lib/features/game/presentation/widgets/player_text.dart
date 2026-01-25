@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe_test/core/utils/utils.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
+import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
 
 class PlayerText extends StatelessWidget {
@@ -12,7 +13,11 @@ class PlayerText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Color color = {Player.x: Color(0xFFFF0004), Player.o: Color(0xFF1298F8), Player.i: Color(0xFFF8B312)}[player]!;
+    final Color color = {
+      Player.x: AppColors.playerX,
+      Player.o: AppColors.playerO,
+      Player.i: AppColors.playerBlocked,
+    }[player]!;
 
     return Stack(
       children: [
@@ -22,11 +27,14 @@ class PlayerText extends StatelessWidget {
             foreground: Paint()
               ..style = PaintingStyle.stroke
               ..strokeWidth = 2
-              ..color = Colors.white,
+              ..color = AppColors.white,
             height: height,
           ),
         ),
-        Text(enumToString(player).toUpperCase(), style: AppTextStyles.defaultStyle(color, fontSize).copyWith(height: height)),
+        Text(
+          enumToString(player).toUpperCase(),
+          style: AppTextStyles.defaultStyle(color, fontSize).copyWith(height: height),
+        ),
       ],
     );
   }
