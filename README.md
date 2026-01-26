@@ -87,3 +87,4 @@ Voici les prochaines étapes prévues pour enrichir l'expérience :
 - [ ] **Personnalisation** : Thèmes de couleurs et icônes personnalisés pour les joueurs (X/O).
 - [ ] **Statistiques Avancées** : Graphiques de progression et taux de victoire par difficulté.
 - [ ] **Sons & Retours Haptiques** : Ajouter une immersion sonore et des vibrations lors des coups.
+- [ ] **Achat In App** : Ajouter des achats in-app pour des thèmes ou des fonctionnalités premium.
