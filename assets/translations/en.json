@@ -1,0 +1,37 @@
+{
+  "home": {
+    "choose_difficulty": "Choose Difficulty",
+    "play": "Play",
+    "view_scores": "View my scores"
+  },
+  "game": {
+    "victory": "Victory of {}",
+    "draw": "Draw",
+    "difficulty": "Difficulty: {}",
+    "nice_game": "It was a nice game!",
+    "winner_is": "The winner is",
+    "player": "Player {}",
+    "turn": "It's {}'s turn",
+    "restart": "Restart"
+  },
+  "history": {
+    "title": "History",
+    "no_scores": "No scores yet",
+    "victory": "Victory of {}",
+    "draw": "Draw",
+    "difficulty": "Difficulty: {}"
+  },
+  "difficulty": {
+    "easy": "Easy",
+    "medium": "Medium",
+    "hard": "Hard"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "languages": {
+      "en": "English",
+      "fr": "French"
+    }
+  }
+}

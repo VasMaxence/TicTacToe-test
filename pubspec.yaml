@@ -18,6 +18,7 @@ dependencies:
   hive_ce:
   path_provider:
   intl:
+  easy_localization: ^3.0.8
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,7 @@ flutter:
     - assets/image/
     - assets/icons/
     - assets/fonts/
+    - assets/translations/
 
 flutter_native_splash:
   background_image: "assets/image/splash.png"

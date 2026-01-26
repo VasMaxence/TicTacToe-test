@@ -4,6 +4,7 @@ import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 import 'package:tictactoe_test/features/home/presentation/controller/home_providers.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class DifficultyButton extends ConsumerWidget {
@@ -15,7 +16,11 @@ class DifficultyButton extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final selected = ref.watch(difficultyProvider) == difficulty;
 
-    const difficultyColors = {Difficulty.easy: Color(0xFF1EB92D), Difficulty.medium: Color(0xFFD4BA27), Difficulty.hard: Color(0xFFD85521)};
+    const difficultyColors = {
+      Difficulty.easy: Color(0xFF1EB92D),
+      Difficulty.medium: Color(0xFFD4BA27),
+      Difficulty.hard: Color(0xFFD85521),
+    };
 
     return InkWell(
       onTap: () {
@@ -30,7 +35,9 @@ class DifficultyButton extends ConsumerWidget {
           borderRadius: BorderRadius.circular(8),
           border: Border.all(color: difficultyColors[difficulty]!, width: 1),
         ),
-        child: Center(child: Text(difficulty.name.toUpperCase(), style: AppTextStyles.buttonStyle(18))),
+        child: Center(
+          child: Text('difficulty.${difficulty.name}'.tr().toUpperCase(), style: AppTextStyles.buttonStyle(18)),
+        ),
       ),
     );
   }

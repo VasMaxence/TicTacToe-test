@@ -5,6 +5,7 @@ import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_providers.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class EndGameAnnouncer extends ConsumerWidget {
   const EndGameAnnouncer({super.key});
@@ -17,11 +18,11 @@ class EndGameAnnouncer extends ConsumerWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("C'était une belle partie !", style: AppTextStyles.defaultStyle(AppColors.white, 24).copyWith(height: 1)),
+          Text("game.nice_game".tr(), style: AppTextStyles.defaultStyle(AppColors.white, 24).copyWith(height: 1)),
           Stack(
             children: [
               Text(
-                "Match Nul",
+                "game.draw".tr(),
                 textAlign: TextAlign.center,
                 style: AppTextStyles.defaultStyle(AppColors.blue, 55).copyWith(
                   foreground: Paint()
@@ -31,23 +32,27 @@ class EndGameAnnouncer extends ConsumerWidget {
                   height: 1,
                 ),
               ),
-              Text("Match Nul", style: AppTextStyles.defaultStyle(AppColors.blue, 55).copyWith(height: 1)),
+              Text("game.draw".tr(), style: AppTextStyles.defaultStyle(AppColors.blue, 55).copyWith(height: 1)),
             ],
           ),
         ],
       );
     }
 
-    final Color color = {Player.x: Color(0xFFFF0004), Player.o: Color(0xFF1298F8), Player.i: Color(0xFFF8B312)}[gameResult.player]!;
+    final Color color = {
+      Player.x: Color(0xFFFF0004),
+      Player.o: Color(0xFF1298F8),
+      Player.i: Color(0xFFF8B312),
+    }[gameResult.player]!;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text("Le gagnant est", style: AppTextStyles.defaultStyle(AppColors.white, 24).copyWith(height: 1)),
+        Text("game.winner_is".tr(), style: AppTextStyles.defaultStyle(AppColors.white, 24).copyWith(height: 1)),
         Stack(
           children: [
             Text(
-              "Joueur ${enumToString(gameResult.player).toUpperCase()}",
+              "game.player".tr(args: [enumToString(gameResult.player).toUpperCase()]),
               textAlign: TextAlign.center,
               style: AppTextStyles.defaultStyle(AppColors.blue, 55).copyWith(
                 foreground: Paint()
@@ -57,7 +62,10 @@ class EndGameAnnouncer extends ConsumerWidget {
                 height: 1,
               ),
             ),
-            Text("Joueur ${enumToString(gameResult.player).toUpperCase()}", style: AppTextStyles.defaultStyle(color, 55).copyWith(height: 1)),
+            Text(
+              "game.player".tr(args: [enumToString(gameResult.player).toUpperCase()]),
+              style: AppTextStyles.defaultStyle(color, 55).copyWith(height: 1),
+            ),
           ],
         ),
       ],

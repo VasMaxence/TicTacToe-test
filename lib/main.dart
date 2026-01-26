@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderContainer, UncontrolledProviderScope;
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/core/data/init_hive.dart';
 import 'package:tictactoe_test/core/env/env_type.dart' show EnvironmentType;
 import 'package:tictactoe_test/core/providers/env_provider.dart' show envConfigProvider;
@@ -12,6 +13,7 @@ import 'flavors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   F.appFlavor = Flavor.values.firstWhere((element) => element.name == appFlavor);
 
@@ -30,9 +32,14 @@ Future<void> main() async {
   await initHiveDatabase();
 
   runApp(
-    UncontrolledProviderScope(
-      container: container,
-      child: App(config: config),
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('fr')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en'),
+      child: UncontrolledProviderScope(
+        container: container,
+        child: App(config: config),
+      ),
     ),
   );
 }

@@ -6,6 +6,7 @@ import 'package:tictactoe_test/features/game/presentation/controller/game_provid
 import 'package:tictactoe_test/features/home/presentation/controller/home_providers.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class PlayButton extends ConsumerWidget {
@@ -22,7 +23,7 @@ class PlayButton extends ConsumerWidget {
         width: formatWidth(180),
         height: formatHeight(45),
         decoration: BoxDecoration(gradient: AppGradient.yellowGradient, borderRadius: BorderRadius.circular(8)),
-        child: Center(child: Text('JOUER', style: AppTextStyles.buttonStyle(23))),
+        child: Center(child: Text('home.play'.tr().toUpperCase(), style: AppTextStyles.buttonStyle(23))),
       ),
     );
   }

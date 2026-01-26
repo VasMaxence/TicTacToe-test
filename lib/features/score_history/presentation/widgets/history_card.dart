@@ -6,6 +6,7 @@ import 'package:tictactoe_test/features/game/presentation/widgets/player_text.da
 import 'package:tictactoe_test/features/score_history/domain/entities/score.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class ScoreHistoryCard extends StatelessWidget {
@@ -44,10 +45,13 @@ class ScoreHistoryCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  isWin ? "Victoire de ${enumToString(winnerPlayer!).toUpperCase()}" : "Match Nul",
+                  isWin ? "history.victory".tr(args: [enumToString(winnerPlayer!).toUpperCase()]) : "history.draw".tr(),
                   style: AppTextStyles.titleStyle(18).copyWith(color: color, height: 1.2),
                 ),
-                Text("Difficulté: ${score.difficulty.name.toUpperCase()}", style: AppTextStyles.bodyStyle(14)),
+                Text(
+                  "history.difficulty".tr(args: [score.difficulty.name.toUpperCase()]),
+                  style: AppTextStyles.bodyStyle(14),
+                ),
               ],
             ),
           ),

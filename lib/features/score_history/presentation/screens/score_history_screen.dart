@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/features/score_history/presentation/controller/score_history_providers.dart';
 import 'package:tictactoe_test/features/score_history/presentation/widgets/history_card.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
@@ -28,7 +29,7 @@ class ScoreHistoryScreen extends ConsumerWidget {
                 data: (scores) {
                   if (scores.isEmpty) {
                     return Center(
-                      child: Text("Aucun score pour le moment", style: AppTextStyles.defaultStyle(AppColors.white, 18)),
+                      child: Text("history.no_scores".tr(), style: AppTextStyles.defaultStyle(AppColors.white, 18)),
                     );
                   }
 
@@ -55,7 +56,7 @@ class ScoreHistoryScreen extends ConsumerWidget {
               ),
             ),
 
-            OpacityTitle(scrollY: scrollY, title: "Historique", showByDefault: true),
+            OpacityTitle(scrollY: scrollY, title: "history.title".tr(), showByDefault: true),
           ],
         );
       },

@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tictactoe_test/core/router/app_router.gr.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/theme/test_styles.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class ShowHistoryButton extends StatelessWidget {
@@ -24,7 +25,7 @@ class ShowHistoryButton extends StatelessWidget {
             width: formatWidth(18),
           ),
           sw(8),
-          Text("Voir mes scores", style: AppTextStyles.buttonStyle(18)),
+          Text("home.view_scores".tr(), style: AppTextStyles.buttonStyle(18)),
         ],
       ),
     );

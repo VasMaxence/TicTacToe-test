@@ -1,0 +1,37 @@
+{
+  "home": {
+    "choose_difficulty": "Choisir la difficulté",
+    "play": "Jouer",
+    "view_scores": "Voir mes scores"
+  },
+  "game": {
+    "victory": "Victoire de {}",
+    "draw": "Match Nul",
+    "difficulty": "Difficulté : {}",
+    "nice_game": "C'était une belle partie !",
+    "winner_is": "Le gagnant est",
+    "player": "Joueur {}",
+    "turn": "C'est au tour de {}",
+    "restart": "Recommencer"
+  },
+  "history": {
+    "title": "Historique",
+    "no_scores": "Aucun score pour le moment",
+    "victory": "Victoire de {}",
+    "draw": "Match Nul",
+    "difficulty": "Difficulté : {}"
+  },
+  "difficulty": {
+    "easy": "Facile",
+    "medium": "Moyen",
+    "hard": "Difficile"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "languages": {
+      "en": "Anglais",
+      "fr": "Français"
+    }
+  }
+}
