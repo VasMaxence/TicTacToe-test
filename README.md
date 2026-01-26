@@ -7,24 +7,72 @@ Gestion des environnements (DEV, STAGING et PROD) via le package flutter_flavori
 - Configuration des environnements se fait au lancement de l'application.
 - Aucune logique métier n'est liée aux flavors.
 
-### How To Run :
+### 📂 Historique & Statistiques
 
-```sh
-# To run dev environment
-flutter run --flavor dev --dart-define=FLAVOR=dev
+- Suivez vos victoires, défaites et matchs nuls.
+- Historique détaillé incluant le mode de jeu (IA ou PvP) et la difficulté.
+- Persistance locale sécurisée avec **Hive**.
 
-# To run staging environment
-flutter run --flavor staging --dart-define=FLAVOR=staging
+### 🌍 Internationalisation (i18n)
 
-# To run prod environment
-flutter run --flavor prod --dart-define=FLAVOR=prod
+- Support complet du **Français** et de l'**Anglais**.
+- Détection automatique de la langue et changement dynamique depuis les paramètres.
+
+---
+
+## 🛠 Architecture Technique
+
+L'application suit les principes de la **Clean Architecture** pour assurer la maintenabilité et la testabilité :
+
+- **Domain** : Entités métier et Use Cases (Logique pure).
+- **Data** : Modèles Hive, Repositories et Datasources.
+- **Presentation** : Gestion d'état avec **Riverpod** et UI responsive.
+
+### Stack Technique
+
+- **State Management** : Riverpod.
+- **Navigation** : AutoRoute (Génération de routes typées).
+- **Persistence** : Hive CE (NoSQL rapide).
+- **Traductions** : Easy Localization.
+- **Design** : Système de design personnalisé avec dégradés vibrants et micro-animations.
+
+---
+
+## 💻 Installation & Développement
+
+### Pré-requis
+
+- Flutter SDK (v3.19.0+)
+- Dart SDK
+
+### Lancer le projet
+
+```bash
+# Récupérer les dépendances
+flutter pub get
+
+# Lancer la génération de code (Build Runner)
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# Lancer l'application (Flavor Dev)
+flutter run --flavor dev -t lib/main.dart
 ```
 
-### Why Flutter Flavorizr ?
+### Tests
 
-_Le choix de flutter_flavorizr au lieu de flavors natifs => Pas gros projet, petit et rapide. Donc plus intéressant._
-_Dans le cas d'un gros projet, il est plus intéressant d'utiliser les flavors natifs afin d'avoir plus de flexibilité._
+```bash
+# Lancer tous les tests unitaires et d'intégration
+flutter test
+```
 
-## State Management :
+---
 
-Gestion des states via le package RiverPod 2
+## 🗺 Prochaines Évolutions
+
+Voici les prochaines étapes prévues pour enrichir l'expérience :
+
+- [ ] **Mode En Ligne** : Jouer contre des amis à distance via Firebase ou WebSockets.
+- [ ] **Animations UI** : Ajouter des effets de particules et des transitions fluides lors des victoires.
+- [ ] **Personnalisation** : Thèmes de couleurs et icônes personnalisés pour les joueurs (X/O).
+- [ ] **Statistiques Avancées** : Graphiques de progression et taux de victoire par difficulté.
+- [ ] **Sons & Retours Haptiques** : Ajouter une immersion sonore et des vibrations lors des coups.

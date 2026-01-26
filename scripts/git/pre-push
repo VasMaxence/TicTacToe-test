@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Pre-push hook: run flutter test before pushing
+# To install: cp scripts/git/pre-push .git/hooks/pre-push && chmod +x .git/hooks/pre-push
+
+echo "------------------------------------------------"
+echo "🔍 Running pre-push checks..."
+echo "------------------------------------------------"
+
+# Run flutter test
+flutter test
+RESULT=$?
+
+if [ $RESULT -ne 0 ]; then
+  echo ""
+  echo "❌ Error: Tests failed! Push aborted."
+  echo "Please fix the tests before pushing."
+  echo "------------------------------------------------"
+  exit 1
+fi
+
+echo ""
+echo "✅ Tests passed! Proceeding with push..."
+echo "------------------------------------------------"
+exit 0
