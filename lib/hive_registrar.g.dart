@@ -4,11 +4,13 @@
 
 import 'package:hive_ce/hive_ce.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/score_history/data/models/score_model.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
     registerAdapter(DifficultyAdapter());
+    registerAdapter(GameModeAdapter());
     registerAdapter(ScoreModelAdapter());
   }
 }
@@ -16,6 +18,7 @@ extension HiveRegistrar on HiveInterface {
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
     registerAdapter(DifficultyAdapter());
+    registerAdapter(GameModeAdapter());
     registerAdapter(ScoreModelAdapter());
   }
 }

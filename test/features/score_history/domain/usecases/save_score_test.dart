@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/score_history/domain/entities/score.dart';
 import 'package:tictactoe_test/features/score_history/domain/repositories/score_repository.dart';
 import 'package:tictactoe_test/features/score_history/domain/usecases/save_score.dart';
@@ -16,7 +17,14 @@ void main() {
     usecase = SaveScore(repository);
   });
 
-  final score = Score(board: const [], boardSize: 3, winningLine: null, difficulty: Difficulty.easy, playedAt: DateTime.now());
+  final score = Score(
+    board: const [],
+    boardSize: 3,
+    winningLine: null,
+    difficulty: Difficulty.easy,
+    gameMode: GameMode.pvp,
+    playedAt: DateTime.now(),
+  );
 
   test('should call saveScore on repository', () async {
     when(() => repository.saveScore(any())).thenAnswer((_) async {});

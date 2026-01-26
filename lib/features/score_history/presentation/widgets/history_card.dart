@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:tictactoe_test/core/utils/utils.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_text.dart';
 import 'package:tictactoe_test/features/score_history/domain/entities/score.dart';
@@ -26,6 +26,17 @@ class ScoreHistoryCard extends StatelessWidget {
       Player.i: AppColors.playerBlocked,
     }[winnerPlayer ?? Player.i]!;
 
+    String victoryText;
+    if (isWin) {
+      if (score.gameMode == GameMode.ai) {
+        victoryText = (winnerPlayer == Player.x) ? "history.you_win".tr() : "history.ai_wins".tr();
+      } else {
+        victoryText = "history.victory".tr(args: [enumToString(winnerPlayer!).toUpperCase()]);
+      }
+    } else {
+      victoryText = "history.draw".tr();
+    }
+
     return Container(
       padding: EdgeInsets.all(formatWidth(16)),
       decoration: BoxDecoration(
@@ -44,13 +55,11 @@ class ScoreHistoryCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(victoryText, style: AppTextStyles.titleStyle(18).copyWith(color: color, height: 1.2)),
                 Text(
-                  isWin ? "history.victory".tr(args: [enumToString(winnerPlayer!).toUpperCase()]) : "history.draw".tr(),
-                  style: AppTextStyles.titleStyle(18).copyWith(color: color, height: 1.2),
-                ),
-                Text(
-                  "history.difficulty".tr(args: [score.difficulty.name.toUpperCase()]),
-                  style: AppTextStyles.bodyStyle(14),
+                  "${'game_mode.${score.gameMode.name}'.tr()} - ${'difficulty.${score.difficulty.name}'.tr()}"
+                      .toUpperCase(),
+                  style: AppTextStyles.bodyStyle(14).copyWith(color: AppColors.white.withValues(alpha: 0.8)),
                 ),
               ],
             ),

@@ -4,10 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tictactoe_test/core/router/app_router.gr.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/home/presentation/widgets/difficulty_button.dart';
+import 'package:tictactoe_test/features/home/presentation/widgets/game_mode_button.dart';
+import 'package:tictactoe_test/features/home/presentation/widgets/starting_player_selector.dart';
 import 'package:tictactoe_test/features/home/presentation/widgets/play_button.dart';
 import 'package:tictactoe_test/features/home/presentation/widgets/show_history_button.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
+import 'package:tictactoe_test/features/home/presentation/controller/home_providers.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 @RoutePage()
@@ -32,22 +36,27 @@ class HomeScreen extends ConsumerWidget {
 
                 Expanded(
                   flex: 2,
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        for (final difficulty in Difficulty.values) ...[
-                          DifficultyButton(difficulty: difficulty),
-                          sh(6),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (final mode in GameMode.values) ...[
+                            GameModeButton(mode: mode),
+                            if (mode != GameMode.values.last) sw(8),
+                          ],
                         ],
-                        sh(6),
-                        const PlayButton(),
-                      ],
-                    ),
+                      ),
+                      sh(12),
+                      if (ref.watch(gameModeProvider) == GameMode.ai) ...[const StartingPlayerSelector(), sh(20)],
+                      for (final difficulty in Difficulty.values) ...[DifficultyButton(difficulty: difficulty), sh(6)],
+                      sh(12),
+                      const PlayButton(),
+                    ],
                   ),
                 ),
-                const Spacer(),
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Padding(

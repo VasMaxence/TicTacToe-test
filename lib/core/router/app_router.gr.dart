@@ -13,6 +13,10 @@ import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart'
     as _i7;
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart'
+    as _i8;
+import 'package:tictactoe_test/features/game/domain/entities/player.dart'
+    as _i9;
 import 'package:tictactoe_test/features/game/presentation/screens/game_screen.dart'
     as _i1;
 import 'package:tictactoe_test/features/home/presentation/screens/home_screen.dart'
@@ -28,10 +32,17 @@ class GameRoute extends _i5.PageRouteInfo<GameRouteArgs> {
   GameRoute({
     _i6.Key? key,
     required _i7.Difficulty difficulty,
+    required _i8.GameMode gameMode,
+    required _i9.Player startingPlayer,
     List<_i5.PageRouteInfo>? children,
   }) : super(
          GameRoute.name,
-         args: GameRouteArgs(key: key, difficulty: difficulty),
+         args: GameRouteArgs(
+           key: key,
+           difficulty: difficulty,
+           gameMode: gameMode,
+           startingPlayer: startingPlayer,
+         ),
          initialChildren: children,
        );
 
@@ -41,32 +52,53 @@ class GameRoute extends _i5.PageRouteInfo<GameRouteArgs> {
     name,
     builder: (data) {
       final args = data.argsAs<GameRouteArgs>();
-      return _i1.GameScreen(key: args.key, difficulty: args.difficulty);
+      return _i1.GameScreen(
+        key: args.key,
+        difficulty: args.difficulty,
+        gameMode: args.gameMode,
+        startingPlayer: args.startingPlayer,
+      );
     },
   );
 }
 
 class GameRouteArgs {
-  const GameRouteArgs({this.key, required this.difficulty});
+  const GameRouteArgs({
+    this.key,
+    required this.difficulty,
+    required this.gameMode,
+    required this.startingPlayer,
+  });
 
   final _i6.Key? key;
 
   final _i7.Difficulty difficulty;
 
+  final _i8.GameMode gameMode;
+
+  final _i9.Player startingPlayer;
+
   @override
   String toString() {
-    return 'GameRouteArgs{key: $key, difficulty: $difficulty}';
+    return 'GameRouteArgs{key: $key, difficulty: $difficulty, gameMode: $gameMode, startingPlayer: $startingPlayer}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! GameRouteArgs) return false;
-    return key == other.key && difficulty == other.difficulty;
+    return key == other.key &&
+        difficulty == other.difficulty &&
+        gameMode == other.gameMode &&
+        startingPlayer == other.startingPlayer;
   }
 
   @override
-  int get hashCode => key.hashCode ^ difficulty.hashCode;
+  int get hashCode =>
+      key.hashCode ^
+      difficulty.hashCode ^
+      gameMode.hashCode ^
+      startingPlayer.hashCode;
 }
 
 /// generated route for

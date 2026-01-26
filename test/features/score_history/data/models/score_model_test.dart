@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
 import 'package:tictactoe_test/features/score_history/data/models/score_model.dart';
@@ -13,6 +14,7 @@ void main() {
       boardSize: 3,
       winningLine: const WinningLine([0, 1, 2], Player.x),
       difficulty: Difficulty.easy,
+      gameMode: GameMode.pvp,
       playedAt: now,
     );
 
@@ -24,6 +26,7 @@ void main() {
       expect(model.winningPlayer, Player.x.index);
       expect(model.winningIndexes, [0, 1, 2]);
       expect(model.difficulty, Difficulty.easy);
+      expect(model.gameMode, GameMode.pvp);
       expect(model.playedAt, now);
     });
 
@@ -34,6 +37,7 @@ void main() {
         winningPlayer: 0,
         winningIndexes: [0, 1, 2],
         difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
         playedAt: now,
       );
 
@@ -44,6 +48,7 @@ void main() {
       expect(domain.winningLine?.player, Player.x);
       expect(domain.winningLine?.indexes, [0, 1, 2]);
       expect(domain.difficulty, Difficulty.easy);
+      expect(domain.gameMode, GameMode.pvp);
       expect(domain.playedAt, now);
     });
 
@@ -54,6 +59,7 @@ void main() {
         winningPlayer: null,
         winningIndexes: null,
         difficulty: Difficulty.medium,
+        gameMode: GameMode.ai,
         playedAt: now,
       );
 
@@ -61,6 +67,7 @@ void main() {
 
       expect(domain.winningLine, isNull);
       expect(domain.difficulty, Difficulty.medium);
+      expect(domain.gameMode, GameMode.ai);
     });
   });
 }

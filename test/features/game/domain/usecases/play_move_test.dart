@@ -1,76 +1,107 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
-import 'package:tictactoe_test/features/game/domain/usecases/play_move.dart';
-import 'package:tictactoe_test/features/game/domain/usecases/check_winner.dart';
-import 'package:tictactoe_test/features/game/domain/entities/game_state.dart';
-import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
-import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/domain/entities/board.dart';
+import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_state.dart';
+import 'package:tictactoe_test/features/game/domain/entities/player.dart';
+import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
+import 'package:tictactoe_test/features/game/domain/usecases/check_winner.dart';
+import 'package:tictactoe_test/features/game/domain/usecases/play_move.dart';
 
 void main() {
-  late PlayMove playMove;
+  group('PlayMove Use Case', () {
+    late PlayMove playMove;
+    late CheckWinner checkWinner;
 
-  setUp(() {
-    playMove = PlayMove(CheckWinner());
-  });
+    setUp(() {
+      checkWinner = CheckWinner();
+      playMove = PlayMove(checkWinner);
+    });
 
-  test('plays a move and switches player when game is not over', () {
-    final state = GameState(board: Board.fromDifficulty(Difficulty.easy), currentPlayer: Player.x, difficulty: Difficulty.easy);
+    test('should update board and switch player', () {
+      final board = Board(List.filled(9, null), size: 3);
+      final initialState = GameState(
+        board: board,
+        currentPlayer: Player.x,
+        difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
+      );
 
-    final next = playMove(state, 0);
+      final result = playMove(initialState, 0);
 
-    expect(next.board[0], Player.x);
-    expect(next.currentPlayer, Player.o);
-    expect(next.winningLine, isNull);
-    expect(next.isDraw, isFalse);
-  });
+      expect(result.board[0], Player.x);
+      expect(result.currentPlayer, Player.o);
+      expect(result.isGameOver, isFalse);
+    });
 
-  test('returns same state if game is already over', () {
-    final state = GameState(
-      board: Board.fromDifficulty(Difficulty.easy),
-      currentPlayer: Player.x,
-      difficulty: Difficulty.easy,
-      winningLine: WinningLine([0, 1, 2], Player.x),
-    );
+    test('should identify winner', () {
+      final board = Board([Player.x, Player.x, null, null, null, null, null, null, null], size: 3);
+      final state = GameState(
+        board: board,
+        currentPlayer: Player.x,
+        difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
+      );
 
-    final next = playMove(state, 1);
+      final result = playMove(state, 2);
 
-    expect(next, state);
-  });
+      expect(result.winningLine, isNotNull);
+      expect(result.winningLine?.player, Player.x);
+      expect(result.winningLine?.indexes, [0, 1, 2]);
+    });
 
-  test('detects a win and does not switch player', () {
-    final board = Board([Player.x, Player.x, null, null, null, null, null, null, null], size: 3);
+    test('should identify draw', () {
+      final board = Board([
+        Player.x,
+        Player.o,
+        Player.x,
+        Player.x,
+        Player.o,
+        Player.o,
+        Player.o,
+        Player.x,
+        null,
+      ], size: 3);
+      final state = GameState(
+        board: board,
+        currentPlayer: Player.x,
+        difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
+      );
 
-    final state = GameState(board: board, currentPlayer: Player.x, difficulty: Difficulty.easy);
+      final result = playMove(state, 8);
 
-    final next = playMove(state, 2);
+      expect(result.isDraw, isTrue);
+      expect(result.winningLine, isNull);
+    });
 
-    expect(next.winningLine, WinningLine([0, 1, 2], Player.x));
-    expect(next.currentPlayer, Player.x);
-    expect(next.isGameOver, isTrue);
-  });
+    test('should return same state if game already over', () {
+      final board = Board(List.filled(9, null), size: 3);
+      final state = GameState(
+        board: board,
+        currentPlayer: Player.x,
+        difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
+        winningLine: const WinningLine([0, 1, 2], Player.x),
+      );
 
-  test('detects a draw when board is full and no winner', () {
-    final board = Board([Player.x, Player.o, Player.x, Player.x, Player.o, Player.o, Player.o, Player.x, null], size: 3);
+      final result = playMove(state, 4);
 
-    final state = GameState(board: board, currentPlayer: Player.x, difficulty: Difficulty.easy);
+      expect(result, state);
+    });
 
-    final next = playMove(state, 8);
+    test('should return same state if position already taken', () {
+      final board = Board([Player.o, null, null, null, null, null, null, null, null], size: 3);
+      final state = GameState(
+        board: board,
+        currentPlayer: Player.x,
+        difficulty: Difficulty.easy,
+        gameMode: GameMode.pvp,
+      );
 
-    expect(next.isDraw, isTrue);
-    expect(next.winningLine, isNull);
-    expect(next.isGameOver, isTrue);
-  });
+      final result = playMove(state, 0);
 
-  test('returns same state if player plays on an already played cell', () {
-    GameState state = GameState(board: Board.fromDifficulty(Difficulty.easy), currentPlayer: Player.x, difficulty: Difficulty.easy);
-    state = playMove(state, 0);
-
-    final tmp = playMove(state, 0);
-
-    expect(tmp.board[0], Player.x);
-    expect(tmp.currentPlayer, Player.o);
-    expect(tmp.winningLine, isNull);
-    expect(tmp.isDraw, isFalse);
+      expect(result, state);
+    });
   });
 }

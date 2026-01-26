@@ -1,9 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_controller.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_providers.dart';
-import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 
 void main() {
   late ProviderContainer container;
@@ -13,7 +14,15 @@ void main() {
       overrides: [
         gameControllerProvider.overrideWith((ref) {
           final playMove = ref.watch(playMoveProvider);
-          return GameController(playMove: playMove, saveScoreUseCase: null, difficulty: Difficulty.easy);
+          final getAIMove = ref.watch(getAIMoveProvider);
+          return GameController(
+            playMove: playMove,
+            getAIMove: getAIMove,
+            saveScoreUseCase: null,
+            difficulty: Difficulty.easy,
+            gameMode: GameMode.pvp,
+            startingPlayer: Player.x,
+          );
         }),
       ],
     );
@@ -30,6 +39,7 @@ void main() {
     expect(state.currentPlayer, Player.x);
     expect(state.winningLine, isNull);
     expect(state.isDraw, isFalse);
+    expect(state.gameMode, GameMode.pvp);
   });
 
   test('play() updates board and switches player', () {

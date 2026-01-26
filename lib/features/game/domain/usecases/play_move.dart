@@ -14,13 +14,30 @@ class PlayMove {
     final winningLine = checkWinner(cells: newBoard.cells, boardSize: newBoard.size, winLength: 3);
 
     if (winningLine != null) {
-      return GameState(board: newBoard, currentPlayer: state.currentPlayer, difficulty: state.difficulty, winningLine: winningLine);
+      return GameState(
+        board: newBoard,
+        currentPlayer: state.currentPlayer,
+        difficulty: state.difficulty,
+        gameMode: state.gameMode,
+        winningLine: winningLine,
+      );
     }
 
     if (newBoard.isFull) {
-      return GameState(board: newBoard, currentPlayer: state.currentPlayer, difficulty: state.difficulty, isDraw: true);
+      return GameState(
+        board: newBoard,
+        currentPlayer: state.currentPlayer,
+        difficulty: state.difficulty,
+        gameMode: state.gameMode,
+        isDraw: true,
+      );
     }
 
-    return GameState(board: newBoard, currentPlayer: state.currentPlayer.opponent, difficulty: state.difficulty);
+    return GameState(
+      board: newBoard,
+      currentPlayer: state.currentPlayer.opponent,
+      difficulty: state.difficulty,
+      gameMode: state.gameMode,
+    );
   }
 }

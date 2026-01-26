@@ -2,7 +2,10 @@
   "home": {
     "choose_difficulty": "Choisir la difficulté",
     "play": "Jouer",
-    "view_scores": "Voir mes scores"
+    "view_scores": "Voir mes scores",
+    "starting_player": "Joueur qui commence",
+    "player_x": "Commence avec X",
+    "player_o": "Commence avec O"
   },
   "game": {
     "victory": "Victoire de {}",
@@ -12,12 +15,18 @@
     "winner_is": "Le gagnant est",
     "player": "Joueur {}",
     "turn": "C'est au tour de {}",
+    "your_turn": "Votre tour",
+    "ai_playing": "L'IA joue...",
+    "you_win": "Vous avez gagné !",
+    "ai_wins": "L'IA a gagné !",
     "restart": "Recommencer"
   },
   "history": {
     "title": "Historique",
     "no_scores": "Aucun score pour le moment",
     "victory": "Victoire de {}",
+    "you_win": "Vous avez gagné !",
+    "ai_wins": "L'IA a gagné !",
     "draw": "Match Nul",
     "difficulty": "Difficulté : {}"
   },
@@ -33,5 +42,9 @@
       "en": "Anglais",
       "fr": "Français"
     }
+  },
+  "game_mode": {
+    "pvp": "PvP",
+    "ai": "IA"
   }
 }

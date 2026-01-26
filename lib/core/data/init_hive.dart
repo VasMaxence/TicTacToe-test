@@ -7,7 +7,7 @@ import 'package:tictactoe_test/hive_registrar.g.dart';
 
 Future<void> initHiveDatabase() async {
   final appDocumentDir = (await getApplicationCacheDirectory()).path;
-  final hiveFile = File('$appDocumentDir/tic-tac-toe.hive');
+  final hiveFile = File('$appDocumentDir/tic-tac-toe-dev.hive');
 
   if (!hiveFile.existsSync()) {
     hiveFile.createSync(recursive: true);

@@ -2,6 +2,7 @@ import 'package:hive_ce/hive_ce.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/domain/entities/winning_line.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import '../../domain/entities/score.dart';
 
 part 'score_model.g.dart';
@@ -26,12 +27,16 @@ class ScoreModel extends HiveObject {
   @HiveField(5)
   final DateTime playedAt;
 
+  @HiveField(6)
+  final GameMode gameMode;
+
   ScoreModel({
     required this.board,
     required this.boardSize,
     required this.winningPlayer,
     required this.winningIndexes,
     required this.difficulty,
+    this.gameMode = GameMode.pvp,
     required this.playedAt,
   });
 
@@ -42,6 +47,7 @@ class ScoreModel extends HiveObject {
       winningPlayer: score.winningLine?.player.index,
       winningIndexes: score.winningLine?.indexes,
       difficulty: score.difficulty,
+      gameMode: score.gameMode,
       playedAt: score.playedAt,
     );
   }
@@ -57,6 +63,7 @@ class ScoreModel extends HiveObject {
       boardSize: boardSize,
       winningLine: winningLine,
       difficulty: difficulty,
+      gameMode: gameMode,
       playedAt: playedAt,
     );
   }

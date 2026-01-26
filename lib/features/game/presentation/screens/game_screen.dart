@@ -2,7 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_controller.dart';
 import 'package:tictactoe_test/features/game/presentation/controller/game_providers.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/end_game_announcer.dart';
@@ -18,15 +20,26 @@ class GameScreen extends ConsumerWidget {
   static const routeName = '/game-screen';
 
   final Difficulty difficulty;
+  final GameMode gameMode;
+  final Player startingPlayer;
 
-  const GameScreen({super.key, required this.difficulty});
+  const GameScreen({super.key, required this.difficulty, required this.gameMode, required this.startingPlayer});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final controllerProvider = gameControllerProvider.overrideWith((ref) {
       final playMove = ref.watch(playMoveProvider);
+      final getAIMove = ref.watch(getAIMoveProvider);
       final saveScore = ref.watch(saveScoreProvider);
-      return GameController(playMove: playMove, saveScoreUseCase: saveScore, difficulty: difficulty);
+
+      return GameController(
+        playMove: playMove,
+        getAIMove: getAIMove,
+        saveScoreUseCase: saveScore,
+        difficulty: difficulty,
+        gameMode: gameMode,
+        startingPlayer: startingPlayer,
+      );
     });
 
     return ProviderScope(overrides: [controllerProvider], child: const _GameView());
@@ -90,7 +103,9 @@ class _GameView extends ConsumerWidget {
                   child: Center(child: GameBoard(state: state)),
                 ),
                 Expanded(
-                  child: state.isGameOver ? const Align(alignment: Alignment.bottomCenter, child: NewGameButton()) : const SizedBox(),
+                  child: state.isGameOver
+                      ? const Align(alignment: Alignment.bottomCenter, child: NewGameButton())
+                      : const SizedBox(),
                 ),
               ],
             ),

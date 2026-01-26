@@ -17,7 +17,13 @@ class PlayButton extends ConsumerWidget {
     return InkWell(
       onTap: () {
         ref.invalidate(gameControllerProvider);
-        context.router.push(GameRoute(difficulty: ref.read(difficultyProvider)));
+        context.router.push(
+          GameRoute(
+            difficulty: ref.read(difficultyProvider),
+            gameMode: ref.read(gameModeProvider),
+            startingPlayer: ref.read(startingPlayerProvider),
+          ),
+        );
       },
       child: Container(
         width: formatWidth(180),

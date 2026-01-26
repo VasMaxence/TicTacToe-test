@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_ce/hive_ce.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/score_history/data/datasources/score_local_datasource.dart';
 import 'package:tictactoe_test/features/score_history/data/models/score_model.dart';
 
@@ -16,7 +17,15 @@ void main() {
     datasource = ScoreLocalDatasourceImpl(box);
   });
 
-  final model = ScoreModel(board: const [], boardSize: 3, winningPlayer: null, winningIndexes: null, difficulty: Difficulty.easy, playedAt: DateTime.now());
+  final model = ScoreModel(
+    board: const [],
+    boardSize: 3,
+    winningPlayer: null,
+    winningIndexes: null,
+    difficulty: Difficulty.easy,
+    gameMode: GameMode.pvp,
+    playedAt: DateTime.now(),
+  );
 
   group('save', () {
     test('should add model to box', () async {

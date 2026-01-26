@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:tictactoe_test/features/game/domain/entities/difficulty.dart';
+import 'package:tictactoe_test/features/game/domain/entities/game_mode.dart';
 import 'package:tictactoe_test/features/score_history/data/datasources/score_local_datasource.dart';
 import 'package:tictactoe_test/features/score_history/data/models/score_model.dart';
 import 'package:tictactoe_test/features/score_history/data/repositories/score_repository_impl.dart';
@@ -17,7 +18,14 @@ void main() {
     repository = ScoreRepositoryImpl(datasource);
   });
 
-  final score = Score(board: const [], boardSize: 3, winningLine: null, difficulty: Difficulty.easy, playedAt: DateTime.now());
+  final score = Score(
+    board: const [],
+    boardSize: 3,
+    winningLine: null,
+    difficulty: Difficulty.easy,
+    gameMode: GameMode.pvp,
+    playedAt: DateTime.now(),
+  );
 
   final model = ScoreModel.fromDomain(score);
 
@@ -39,6 +47,7 @@ void main() {
 
       expect(result.length, 1);
       expect(result.first.difficulty, score.difficulty);
+      expect(result.first.gameMode, score.gameMode);
       verify(() => datasource.getAll()).called(1);
     });
   });

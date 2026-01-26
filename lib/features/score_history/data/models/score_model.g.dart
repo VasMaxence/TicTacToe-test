@@ -22,6 +22,7 @@ class ScoreModelAdapter extends TypeAdapter<ScoreModel> {
       winningPlayer: (fields[2] as num?)?.toInt(),
       winningIndexes: (fields[3] as List?)?.cast<int>(),
       difficulty: fields[4] as Difficulty,
+      gameMode: fields[6] == null ? GameMode.pvp : fields[6] as GameMode,
       playedAt: fields[5] as DateTime,
     );
   }
@@ -29,7 +30,7 @@ class ScoreModelAdapter extends TypeAdapter<ScoreModel> {
   @override
   void write(BinaryWriter writer, ScoreModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.board)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class ScoreModelAdapter extends TypeAdapter<ScoreModel> {
       ..writeByte(4)
       ..write(obj.difficulty)
       ..writeByte(5)
-      ..write(obj.playedAt);
+      ..write(obj.playedAt)
+      ..writeByte(6)
+      ..write(obj.gameMode);
   }
 
   @override
