@@ -1,11 +1,22 @@
-# TicTacToe-test
+# 🎮 Tic-Tac-Toe Ultimate
 
-## Falvors :
+Un jeu de Morpion (Tic-Tac-Toe) moderne, robuste et extensible, développé avec **Flutter**. Cette application a été conçue comme un test technique démontrant des pratiques de développement de haute qualité, incluant une architecture propre, des tests automatisés et une gestion d'état réactive.
 
-Gestion des environnements (DEV, STAGING et PROD) via le package flutter_flavorizr :
+## 🚀 Fonctionnalités
 
-- Configuration des environnements se fait au lancement de l'application.
-- Aucune logique métier n'est liée aux flavors.
+### 🧠 Intelligence Artificielle (Minimax)
+
+Jouez contre l'ordinateur avec trois niveaux de difficulté :
+
+- **Facile** : Débutant, coups aléatoires.
+- **Moyen** : Un défi équilibré avec une vision à court terme.
+- **Difficile** : L'IA utilise l'algorithme Minimax pour garantir qu'elle ne perdra jamais.
+
+### 👥 Local PvP & Personnalisation
+
+- Jouez contre un ami sur le même téléphone.
+- **Choix du camp** : En mode IA, choisissez de commencer avec les **X** ou les **O**.
+- **IA réactive** : Si vous choisissez de jouer second, l'IA joue son coup instantanément.
 
 ### 📂 Historique & Statistiques
 
