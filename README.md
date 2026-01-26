@@ -59,10 +59,11 @@ L'application suit les principes de la **Clean Architecture** pour assurer la ma
 ### Lancer le projet
 
 ```bash
-# Récupérer les dépendances
 flutter pub get
 
-# Lancer la génération de code (Build Runner)
+# Configurer les Git Hooks locaux (OBLIGATOIRE pour pusher)
+sh scripts/setup_hooks.sh
+
 flutter pub run build_runner build --delete-conflicting-outputs
 
 # Lancer l'application (Flavor Dev)
