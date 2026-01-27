@@ -53,6 +53,3 @@ Le changement de langue s'effectue dynamiquement dans l'application (Sélecteur 
 2. Ajoutez votre nouvelle clé dans la section appropriée.
 3. Veillez à garder une structure cohérente et hiérarchisée (ex: `game.status.win`).
 4. Lancez l'application pour voir les changements.
-
-> [!TIP]
-> Si les nouvelles clés ne s'affichent pas immédiatement lors d'un "Hot Reload", effectuez un "Hot Restart" pour recharger les fichiers JSON.

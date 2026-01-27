@@ -1,16 +1,50 @@
-# 🎮 Tic-Tac-Toe Ultimate
+<div align="center">
+  <img src="docs/assets/appIcon.png" alt="App Icon" width="240"/>
+</div>
 
-Un jeu de Morpion (Tic-Tac-Toe) moderne, robuste et extensible, développé avec **Flutter**. Cette application a été conçue comme un test technique démontrant des pratiques de développement de haute qualité, incluant une architecture propre, des tests automatisés et une gestion d'état réactive.
+# 🎮 Tic-Tac-TOE
+
+Un jeu de Tic-Tac-TOE moderne, robuste et extensible, développé avec **Flutter**. Cette application a été conçue comme un test technique démontrant des pratiques de développement de haute qualité, incluant une architecture propre, des tests automatisés et une gestion d'état via RiverPod 2.
+
+## 📱 Interfaces
+
+### Page d'accueil
+
+Lors du lancement du jeu, l'utilisateur se retrouve sur une page principale où il peut choisir son mode de jeu (PVP / PVE IA) et sa difficulté :
+
+<div align="center">
+  <img src="docs/assets/home-screen.png" alt="Home Screen PVP" width="300"/>
+  <img src="docs/assets/home-screen-ia.png" alt="Home Screen IA" width="300"/>
+</div>
+
+### Page de jeu
+
+Une fois dans le jeu, l'utilisateur peut choisir son pion (X ou O) et commence à jouer sur une grille en 3\*3, 4\*4 ou 5\*5, définit par la difficulté.
+
+<div align="center">
+  <img src="docs/assets/game.png" alt="Game Screen PVP" width="300"/>
+  <img src="docs/assets/game-ia.png" alt="Game Screen IA" width="300"/>
+</div>
+
+### Page de paramètres
+
+Dans l'espace paramètres, l'utilisateur peut choisir son langage (Anglais ou Français).
+
+<div align="center">
+  <img src="docs/assets/settings.png" alt="Settings Screen PVP" width="300"/>
+</div>
+
+---
 
 ## 🚀 Fonctionnalités
 
-### 🧠 Intelligence Artificielle (Minimax)
+### 🧠 Intelligence Artificielle
 
 Jouez contre l'ordinateur avec trois niveaux de difficulté :
 
-- **Facile** : Débutant, coups aléatoires.
-- **Moyen** : Un défi équilibré avec une vision à court terme.
-- **Difficile** : L'IA utilise l'algorithme Minimax pour garantir qu'elle ne perdra jamais.
+- **Facile** : Débutant, sur une grille en 3\*3.
+- **Moyen** : Un défi équilibré avec une vision à court terme, sur une grille en 4\*4.
+- **Difficile** : L'IA utilise algorithme renforcé (Minimax) pour être vraiment compétitive, sur une grille en 5\*5.
 
 ### 👥 Local PvP & Personnalisation
 
@@ -22,12 +56,12 @@ Jouez contre l'ordinateur avec trois niveaux de difficulté :
 
 - Suivez vos victoires, défaites et matchs nuls.
 - Historique détaillé incluant le mode de jeu (IA ou PvP) et la difficulté.
-- Persistance locale sécurisée avec **Hive**.
+- Persistance locale avec **Hive**.
 
 ### 🌍 Internationalisation (i18n)
 
 - Support complet du **Français** et de l'**Anglais**.
-- Détection automatique de la langue et changement dynamique depuis les paramètres.
+- Détection automatique de la langue et changement depuis les paramètres.
 
 ---
 
@@ -41,11 +75,12 @@ L'application suit les principes de la **Clean Architecture** pour assurer la ma
 
 ### Stack Technique
 
-- **State Management** : Riverpod.
-- **Navigation** : AutoRoute (Génération de routes typées).
-- **Persistence** : Hive CE (NoSQL rapide).
+- **Environnement** : Flavors (Dev, Staging et Prod) géré via flutter_flavorizr
+- **State Management** : Riverpod 3.
+- **Navigation** : AutoRoute.
+- **Persistence** : Hive CE.
 - **Traductions** : Easy Localization.
-- **Design** : Système de design personnalisé avec dégradés vibrants et micro-animations.
+- **Design** : Système de design personnalisé avec dégradés.
 
 ---
 

@@ -4,5 +4,5 @@ import 'package:tictactoe_test/features/score_history/data/models/score_model.da
 
 final scoreBoxProvider = FutureProvider<Box<ScoreModel>>((ref) async {
   final hive = Hive;
-  return hive.openBox<ScoreModel>('scores-dev');
+  return hive.openBox<ScoreModel>('scores');
 });

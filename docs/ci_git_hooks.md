@@ -36,6 +36,3 @@ Ce script va :
 
 1. Copier le script `pre-push` dans votre dossier local `.git/hooks/`.
 2. Donner les permissions d'exécution nécessaires.
-
-> [!TIP]
-> Si vous avez un besoin critique et exceptionnel de pusher sans lancer les tests, vous pouvez utiliser l'option `git push --no-verify`, mais cela est fortement déconseillé.
