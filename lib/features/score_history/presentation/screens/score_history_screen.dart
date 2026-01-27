@@ -56,7 +56,12 @@ class ScoreHistoryScreen extends ConsumerWidget {
               ),
             ),
 
-            OpacityTitle(scrollY: scrollY, title: "history.title".tr(), showByDefault: true),
+            OpacityTitle(
+              scrollY: scrollY,
+              title: "history.title".tr(),
+              showByDefault: true,
+              scrollColor: AppColors.primary,
+            ),
           ],
         );
       },

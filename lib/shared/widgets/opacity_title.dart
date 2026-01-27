@@ -9,25 +9,15 @@ class OpacityTitle extends StatelessWidget {
   final String title;
   final double scrollY;
   final VoidCallback? onTap;
-  final Color? color;
-  final Color? backgroundColor;
-  final Color? scrollColor;
-  final Color? titleColor;
-  final bool showShadow;
-  final bool isTransparent;
   final bool showByDefault;
+  final Color? scrollColor;
 
   const OpacityTitle({
     super.key,
     required this.scrollY,
     required this.title,
     this.onTap,
-    this.color,
-    this.backgroundColor,
     this.scrollColor,
-    this.titleColor,
-    this.showShadow = true,
-    this.isTransparent = false,
     this.showByDefault = false,
   });
 
@@ -39,16 +29,14 @@ class OpacityTitle extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         padding: EdgeInsets.only(top: formatHeight(4) + MediaQuery.of(context).padding.top, bottom: formatHeight(12)),
         decoration: BoxDecoration(
-          color: isTransparent ? Colors.transparent : scrollColor?.withValues(alpha: 1 * (scrollY / 100)),
-          boxShadow: showShadow
-              ? [
-                  BoxShadow(
-                    color: Theme.of(context).shadowColor.withValues(alpha: 0.06 * (scrollY / 100)),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ]
-              : const [],
+          color: scrollColor?.withValues(alpha: 1 * (scrollY / 100)),
+          boxShadow: [
+            BoxShadow(
+              color: Theme.of(context).shadowColor.withValues(alpha: 0.06 * (scrollY / 100)),
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -78,11 +66,7 @@ class OpacityTitle extends StatelessWidget {
                 child: Center(
                   child: Opacity(
                     opacity: showByDefault ? 1 : 1 * (scrollY / 100),
-                    child: Text(
-                      title,
-                      style: AppTextStyles.titleStyle(18).copyWith(color: titleColor),
-                      textAlign: TextAlign.center,
-                    ),
+                    child: Text(title, style: AppTextStyles.titleStyle(18), textAlign: TextAlign.center),
                   ),
                 ),
               ),

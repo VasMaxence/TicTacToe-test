@@ -13,6 +13,15 @@ fi
 
 echo "🔧 Installing git hooks..."
 
+# Pre-commit
+if [ -f "$SCRIPTS_DIR/pre-commit" ]; then
+  cp "$SCRIPTS_DIR/pre-commit" "$HOOKS_DIR/pre-commit"
+  chmod +x "$HOOKS_DIR/pre-commit"
+  echo "✅ Installed pre-commit hook"
+else
+  echo "⚠️ Warning: scripts/git/pre-commit not found"
+fi
+
 # Pre-push
 if [ -f "$SCRIPTS_DIR/pre-push" ]; then
   cp "$SCRIPTS_DIR/pre-push" "$HOOKS_DIR/pre-push"
