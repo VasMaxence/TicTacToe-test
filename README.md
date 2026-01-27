@@ -21,9 +21,12 @@ Lors du lancement du jeu, l'utilisateur se retrouve sur une page principale où 
 
 Une fois dans le jeu, l'utilisateur peut choisir son pion (X ou O) et commence à jouer sur une grille en 3\*3, 4\*4 ou 5\*5, définit par la difficulté.
 
+Lorsqu'un joueur remporte la partie, une animation de victoire est affichée.
+
 <div align="center">
   <img src="docs/assets/game.png" alt="Game Screen PVP" width="300"/>
   <img src="docs/assets/game-ia.png" alt="Game Screen IA" width="300"/>
+  <img src="docs/assets/game-winner.png" alt="Game Screen Winner Animation" width="300"/>
 </div>
 
 ### Page de paramètres
