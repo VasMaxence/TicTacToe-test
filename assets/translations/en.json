@@ -7,7 +7,8 @@
     "player_x": "Starts with X",
     "player_o": "Starts with O",
     "you": "You",
-    "ai": "AI"
+    "ai": "AI",
+    "test": "Test"
   },
   "game": {
     "victory": "Victory of {}",
