@@ -5,7 +5,9 @@
     "view_scores": "View my scores",
     "starting_player": "Starting Player",
     "player_x": "Starts with X",
-    "player_o": "Starts with O"
+    "player_o": "Starts with O",
+    "you": "You",
+    "ai": "AI"
   },
   "game": {
     "victory": "Victory of {}",

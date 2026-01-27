@@ -61,7 +61,7 @@ class _PlayerOption extends ConsumerWidget {
           children: [
             PlayerText(player: player, fontSize: 32, height: 1),
             sw(8),
-            Text(player.name.toUpperCase(), style: AppTextStyles.buttonStyle(16)),
+            Text(player == Player.x ? "home.you".tr() : "home.ai".tr(), style: AppTextStyles.buttonStyle(16)),
           ],
         ),
       ),
