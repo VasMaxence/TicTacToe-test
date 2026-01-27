@@ -12,6 +12,7 @@ import 'package:tictactoe_test/features/game/presentation/widgets/game_board.dar
 import 'package:tictactoe_test/features/game/presentation/widgets/new_game_button.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_turn.dart';
 import 'package:tictactoe_test/features/score_history/domain/providers/score_usecases_providers.dart';
+import 'package:tictactoe_test/features/game/presentation/widgets/victory_popup.dart';
 import 'package:tictactoe_test/shared/theme/colors.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
@@ -52,6 +53,17 @@ class _GameView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(gameControllerProvider);
+
+    ref.listen(gameControllerProvider, (previous, next) {
+      if (previous != null && !previous.isGameOver && next.isGameOver && next.winningLine != null) {
+        showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (dialogContext) =>
+              UncontrolledProviderScope(container: ProviderScope.containerOf(context), child: const VictoryPopup()),
+        );
+      }
+    });
 
     return Scaffold(
       body: DecoratedBox(

@@ -7,13 +7,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class NewGameButton extends ConsumerWidget {
-  const NewGameButton({super.key});
+  final VoidCallback? onTap;
+
+  const NewGameButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return InkWell(
       onTap: () {
         ref.read(gameControllerProvider.notifier).reset();
+        onTap?.call();
       },
       child: Container(
         width: formatWidth(180),

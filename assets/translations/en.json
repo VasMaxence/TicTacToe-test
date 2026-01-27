@@ -21,7 +21,8 @@
     "ai_playing": "AI is playing...",
     "you_win": "You win!",
     "ai_wins": "AI wins!",
-    "restart": "Restart"
+    "restart": "Restart",
+    "quit": "Quit"
   },
   "history": {
     "title": "History",

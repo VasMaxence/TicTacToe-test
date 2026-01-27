@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tictactoe_test/features/game/domain/entities/player.dart';
 import 'package:tictactoe_test/features/game/presentation/widgets/player_text.dart';
-import 'package:tictactoe_test/shared/theme/colors.dart';
+import 'package:tictactoe_test/shared/widgets/responsive.dart';
 
 class CellWidget extends StatefulWidget {
   final Player? value;
@@ -52,23 +52,37 @@ class _CellWidgetState extends State<CellWidget> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
-    final bgColor = widget.isWinningCell ? AppColors.winner.withValues(alpha: .25) : Colors.transparent;
+    final Color color =
+        {Player.x: Color(0xFFFF0004), Player.o: Color(0xFF1298F8), Player.i: Color(0xFFF8B312)}[widget.value] ??
+        Colors.transparent;
+
+    final decoration = widget.isWinningCell
+        ? BoxDecoration(
+            color: color.withValues(alpha: .25),
+            border: Border.all(color: widget.isWinningCell ? color : Colors.transparent, width: 2),
+            borderRadius: BorderRadius.circular(r(4)),
+          )
+        : null;
 
     return InkWell(
       onTap: widget.onTap,
-      child: Container(
-        decoration: BoxDecoration(color: bgColor),
-        child: widget.value == null
-            ? const SizedBox()
-            : Center(
-                child: FadeTransition(
-                  opacity: _opacity,
-                  child: ScaleTransition(
-                    scale: _scale,
-                    child: PlayerText(player: widget.value!, fontSize: 80, height: .8),
+      child: Padding(
+        padding: EdgeInsets.all(formatWidth(4)),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          decoration: decoration,
+          child: widget.value == null
+              ? const SizedBox()
+              : Center(
+                  child: FadeTransition(
+                    opacity: _opacity,
+                    child: ScaleTransition(
+                      scale: _scale,
+                      child: PlayerText(player: widget.value!, fontSize: 80, height: .8),
+                    ),
                   ),
                 ),
-              ),
+        ),
       ),
     );
   }

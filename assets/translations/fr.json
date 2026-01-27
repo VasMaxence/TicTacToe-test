@@ -21,7 +21,8 @@
     "ai_playing": "L'IA joue...",
     "you_win": "Vous avez gagné !",
     "ai_wins": "L'IA a gagné !",
-    "restart": "Recommencer"
+    "restart": "Recommencer",
+    "quit": "Quitter"
   },
   "history": {
     "title": "Historique",
