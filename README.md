@@ -100,7 +100,8 @@ L'application suit les principes de la **Clean Architecture** pour assurer la ma
 flutter pub get
 
 # Configurer les Git Hooks locaux (OBLIGATOIRE pour pusher)
-sh scripts/setup_hooks.sh
+# vérifiez d'avoir installé pre-commit
+pre-commit install
 
 flutter pub run build_runner build --delete-conflicting-outputs
 
